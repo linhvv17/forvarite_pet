@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/petFragment">
+
+  <fragment
+      android:id="@+id/petFragment"
+      android:name="com.dev.forvaritepet.pet.PetFragment"
+      android:label="Pet"
+      tools:layout="@layout/fragment_pet">
+    <action
+        android:id="@+id/action_carFragment_to_carStoreFragment"
+        app:destination="@id/petStoreFragment" />
+  </fragment>
+  <fragment
+      android:id="@+id/petStoreFragment"
+      android:name="com.dev.forvaritepet.petstore.PetStoreFragment"
+      android:label="Pet Catalogue"
+      tools:layout="@layout/fragment_pet_store" />
+</navigation>

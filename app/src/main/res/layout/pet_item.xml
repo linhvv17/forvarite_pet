@@ -1,0 +1,91 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="pet"
+            type="com.dev.forvaritepet.model.Pet" />
+        <variable
+            name="petStoreFragment"
+            type="com.dev.forvaritepet.petstore.PetStoreFragment" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_std_half"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+
+        app:cardCornerRadius="@dimen/cardview_corner_radius"
+        app:contentPadding="@dimen/cardview_padding">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/monsterPicture"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                android:duplicateParentState="true"
+                android:maxWidth="126dp"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                android:src="@{context.getDrawable(pet.picture)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/strengthText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/power_text(pet.strength)}"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/sku_price"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/monsterPicture"
+                app:layout_constraintStart_toStartOf="@+id/sku_title"
+                app:layout_constraintTop_toBottomOf="@+id/sku_title"
+                tools:text="100" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sku_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:visibility="gone"
+                app:layout_constraintBaseline_toBaselineOf="@+id/strengthText"
+                app:layout_constraintEnd_toEndOf="@+id/sku_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/strengthText"
+                tools:text="$4.99" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sku_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:duplicateParentState="true"
+                android:gravity="center"
+                android:text="@{pet.name}"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/sku_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/monsterPicture"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.30"
+                tools:text="Title Placeholder" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

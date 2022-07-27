@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">forvaritepet</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="cat_fragment_label">Monsters</string>
+    <string name="buy_fragment_label">Buy Items</string>
+    <string name="catch_the_mouse">Catch The Mouse</string>
+    <string name="catch_it">Catch it</string>
+    <string name="buy">Buy</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="change_pet">Change pet</string>
+
+    <string name="power_text">%1$sP</string>
+    <string name="your_pet">Your pet: %1$s</string>
+
+    <string name="felicitous">Felicitous</string>
+    <string name="scarecrow">Scarecrow</string>
+    <string name="item_not_available">This item is not available for purchase</string>
+    <string name="debug_price_not_found">N/A</string>
+
+
+    <string name="bulldogs">Bulldogs</string>
+    <string name="frenchbulldog">French Bulldog</string>
+    <string name="germanshepherd">German Shepherd</string>
+    <string name="labrador">Labrador</string>
+    <string name="malegolden">Male Golden</string>
+    <string name="poodlelying">Poodle Lying</string>
+</resources>
