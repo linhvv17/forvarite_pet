@@ -1,5 +1,7 @@
 package com.dev.forvaritepet.petstore
 
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,11 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.billingclient.api.*
+import com.dev.forvaritepet.R
 import com.dev.forvaritepet.adapters.PetsAdapter
 import com.dev.forvaritepet.databinding.FragmentPetStoreBinding
 import com.google.common.collect.ImmutableList
 
-class PetStoreFragment : Fragment() {
+class PetStoreFragment : Fragment(), PurchasesUpdatedListener {
 
     private lateinit var binding: FragmentPetStoreBinding
 
@@ -145,6 +148,40 @@ class PetStoreFragment : Fragment() {
             }
         )
 
+
+    }
+
+    override fun onPurchasesUpdated(billingResult: BillingResult, purchases: List<Purchase>?) {
+        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
+            for (purchase in purchases) {
+                val consumeParams =
+                    ConsumeParams.newBuilder()
+                        .setPurchaseToken(purchase.purchaseToken)
+                        .build()
+
+
+                val listener = ConsumeResponseListener { billingResult, purchaseToken ->
+                    if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                        val inflater = this.requireActivity().getSystemService(
+                            Context.LAYOUT_INFLATER_SERVICE
+                        ) as LayoutInflater
+                        val v: View = inflater.inflate(R.layout.thank_popup, null)
+                        AlertDialog.Builder(this.requireActivity())
+                            .setIcon(R.mipmap.ic_launcher)
+                            .setView(v)
+                            .setTitle("Thank you")
+                            .setMessage("Have a nice day!")
+                            .show()
+                    }
+                }
+                billingClient!!.consumeAsync(consumeParams, listener)
+
+            }
+        } else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
+            // Handle an error caused by a user cancelling the purchase flow.
+        } else {
+            // Handle any other error codes.
+        }
 
     }
 
